@@ -17,6 +17,14 @@
     box-sizing: border-box; /* paddingを含めてサイズ計算 */
     pointer-events: none; /* 下の要素をクリックさせない */
     border-radius: inherit; /* 親要素の角丸を継承（サムネイルなど） */
+    animation: pulse 1.5s infinite ease-in-out; /* パルスアニメーションを追加 */
+}
+
+/* パルスアニメーション */
+@keyframes pulse {
+    0% { background-color: rgba(0, 0, 0, 0.75); }
+    50% { background-color: rgba(0, 0, 0, 0.85); }
+    100% { background-color: rgba(0, 0, 0, 0.75); }
 }
 
 /* ブロック表示用スタイル */
@@ -25,19 +33,54 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 0, 0, 0.8); /* 赤背景 */
+    background-color: rgba(220, 53, 69, 0.9); /* より鮮明な赤背景 */
     color: white;
-    padding: 3px 6px;
+    padding: 5px 8px;
     border-radius: 4px;
     font-size: 12px;
     font-weight: bold;
     z-index: 1001; /* オーバーレイより更に手前 */
     pointer-events: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); /* 軽い影をつける */
+    white-space: nowrap; /* テキストの折り返しを防止 */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); /* テキストの可読性向上 */
 }
 
 /* ブロックされた動画コンテナ全体のスタイル */
 .youtube-focus-filter-blocked-container {
     opacity: 0.3; /* 薄くする */
-    pointer-events: none; /* クリックイベントを無効化 */
+    filter: grayscale(100%); /* グレースケール効果を追加 */
     position: relative; /* インジケータの位置基準用 */
+    overflow: visible !important; /* インジケータがはみ出ても表示されるように */
+}
+
+/* ブロックされた動画のホバー時のスタイル */
+.youtube-focus-filter-blocked-container:hover {
+    opacity: 0.5; /* ホバー時に少し濃くする */
+    transition: opacity 0.3s ease; /* スムーズな変化 */
+}
+
+/* ブロックされた動画内の子要素のクリックを防止 */
+.youtube-focus-filter-blocked-container * {
+    pointer-events: none !important; /* クリックイベントを無効化 */
+}
+
+/* YouTubeのレイアウト変更への対応 */
+ytd-rich-grid-renderer .youtube-focus-filter-blocked-container,
+ytd-rich-section-renderer .youtube-focus-filter-blocked-container,
+ytd-grid-renderer .youtube-focus-filter-blocked-container,
+ytd-shelf-renderer .youtube-focus-filter-blocked-container {
+    isolation: isolate; /* 子要素の視覚効果が親に影響しないようにする */
+}
+
+/* モバイルデバイス対応（小さい画面サイズ用） */
+@media (max-width: 768px) {
+    .youtube-focus-filter-overlay {
+        font-size: 12px;
+    }
+    
+    .youtube-focus-filter-blocked-indicator {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
 }
