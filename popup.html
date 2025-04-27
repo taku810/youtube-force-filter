@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Focus Filter 設定</title>
+    <style>
+        body { width: 300px; font-family: sans-serif; padding: 15px; font-size: 14px; }
+        h3 { margin-top: 0; margin-bottom: 15px; color: #333; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="password"], input[type="text"] {
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #357ae8;
+        }
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .success { color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; }
+        .error { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; }
+        a { color: #1a0dab; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .info { font-size: 12px; color: #555; margin-top: 10px; }
+        
+        /* トグルスイッチのスタイル */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            margin-bottom: 15px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4285F4;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .toggle-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .toggle-label span {
+            font-weight: bold;
+        }
+
+        /* ジャンル選択用チェックボックスのスタイル */
+        .genre-selection {
+            margin-top: 15px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .genre-selection h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .genre-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .genre-checkbox input {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h3>YouTube Focus Filter 設定</h3>
+    
+    <!-- フィルターの有効/無効を切り替えるトグルスイッチ -->
+    <div class="toggle-label">
+        <span>フィルターを有効にする</span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="filterEnabled">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- ブロックするジャンルの選択 -->
+    <div class="genre-selection">
+        <h4>ブロックするジャンル</h4>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-music" value="音楽">
+            <label for="genre-music">音楽</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-entertainment" value="エンタメ">
+            <label for="genre-entertainment">エンタメ</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-game" value="ゲーム">
+            <label for="genre-game">ゲーム</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-sports" value="スポーツ">
+            <label for="genre-sports">スポーツ</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-cooking" value="料理">
+            <label for="genre-cooking">料理</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-travel" value="旅行">
+            <label for="genre-travel">旅行</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-animal" value="動物">
+            <label for="genre-animal">動物</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-lifehack" value="ライフハック">
+            <label for="genre-lifehack">ライフハック</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-politics" value="政治">
+            <label for="genre-politics">政治</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-economics" value="経済">
+            <label for="genre-economics">経済</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-science" value="科学">
+            <label for="genre-science">科学</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-history" value="歴史">
+            <label for="genre-history">歴史</label>
+        </div>
+        <div class="genre-checkbox">
+            <input type="checkbox" id="genre-other" value="その他">
+            <label for="genre-other">その他</label>
+        </div>
+    </div>
+
+    <label for="apiKey" style="margin-top: 15px;">Gemini API キー:</label>
+    <input type="password" id="apiKey" placeholder="ここにAPIキーを貼り付け">
+    <button id="saveButton">保存</button>
+    <div id="status"></div>
+    <p class="info">APIキーは <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a> で取得できます。</p>
+    <p class="info">デフォルトで許可されるジャンル: 仕事, 勉強, プログラミング, 起業</p>
+    <p class="info">※音楽とエンタメのジャンルはデフォルトでは許可されますが、チェックを入れるとブロック対象になります</p>
+
+    <script src="popup.js"></script>
+</body>
+</html>

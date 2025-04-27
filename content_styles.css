@@ -1,0 +1,43 @@
+/* 判定中オーバーレイのスタイル */
+.youtube-focus-filter-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* 少し濃く */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 他の要素より手前に */
+    font-size: 14px; /* 適切な文字サイズ */
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box; /* paddingを含めてサイズ計算 */
+    pointer-events: none; /* 下の要素をクリックさせない */
+    border-radius: inherit; /* 親要素の角丸を継承（サムネイルなど） */
+}
+
+/* ブロック表示用スタイル */
+.youtube-focus-filter-blocked-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 0, 0, 0.8); /* 赤背景 */
+    color: white;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1001; /* オーバーレイより更に手前 */
+    pointer-events: none;
+}
+
+/* ブロックされた動画コンテナ全体のスタイル */
+.youtube-focus-filter-blocked-container {
+    opacity: 0.3; /* 薄くする */
+    pointer-events: none; /* クリックイベントを無効化 */
+    position: relative; /* インジケータの位置基準用 */
+}

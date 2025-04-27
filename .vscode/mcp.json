@@ -1,0 +1,12 @@
+{
+    "servers": {
+      "github": {
+        "command": "node",
+        "args": ["/path/to/github-mcp-server/build/index.js"],
+        "env": {
+          "LOG_LEVEL": "info",
+          "SERVER_NAME": "github-mcp-server"
+        }
+      }
+    }
+  }

@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Focus Filter",
+    "version": "1.2", 
+    "description": "YouTube動画をジャンルに基づいてフィルタリングし、フォーカスを維持します",
+    "permissions": [
+        "storage",   
+        "activeTab"  
+    ],
+    "host_permissions": [
+        "*://*.youtube.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [ "*://*.youtube.com/*" ],
+            "js": [ "content.js" ],
+            "run_at": "document_idle", 
+            "css": [ "content_styles.css" ] 
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "images/icon16.png",
+            "48": "images/icon48.png",
+            "128": "images/icon128.png"
+        }
+    },
+    "icons": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    }
+}
